@@ -1,26 +1,28 @@
 package ru.svyat.pdapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ru.svyat.pdapp.model.enums.CourierStatus;
+import lombok.*;
+import ru.svyat.pdapp.dto.enums.CourierStatus;
 
 import javax.persistence.*;
 
-@Data
+@Setter
+@Getter
 @Entity
+@Builder
 @Table(name = "couriers")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Courier {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "couriers_seq")
+	@SequenceGenerator(name = "couriers_seq", sequenceName = "couriers_id_seq", allocationSize = 1)
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
 	private CourierStatus status;
 
 	@OneToOne
+	@JoinColumn(name = "user")
 	private User user;
 }

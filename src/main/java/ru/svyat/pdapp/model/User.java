@@ -1,25 +1,29 @@
 package ru.svyat.pdapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ru.svyat.pdapp.model.enums.UserRole;
+import lombok.*;
+import ru.svyat.pdapp.dto.enums.UserRole;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
+@Builder
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
+	@Column(name = "username")
 	private String login;
+	private String password;
+	private Boolean enabled;
 
+	@ElementCollection
+	@CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "username"))
+	@Column(name="authority")
 	@Enumerated(EnumType.STRING)
-	private UserRole role;
+	private List<UserRole> roles;
 }

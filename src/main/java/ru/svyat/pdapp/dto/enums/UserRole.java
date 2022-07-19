@@ -1,4 +1,4 @@
-package ru.svyat.pdapp.model.enums;
+package ru.svyat.pdapp.dto.enums;
 
 public enum UserRole {
 	ADMIN,
