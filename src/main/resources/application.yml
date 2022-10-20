@@ -1,5 +1,7 @@
-server:
-  port: 8081
+springdoc:
+  version: 2
+  swagger-ui:
+    path: /swagger-ui
 spring:
   liquibase:
     change-log: "classpath:/db/changelog.xml"

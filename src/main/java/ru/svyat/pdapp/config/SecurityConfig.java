@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity security) {
 		security.ignoring()
-				.antMatchers("/signin");
+				.antMatchers("/swagger-ui", "/v3", "/signin");
 	}
 
 	@Override
